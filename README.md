@@ -1,4 +1,4 @@
-# Laravel Cart
+# Guest UI para binafy/laravel-cart con invitados, merge on login, badge Livewire/AJAX y vista con spatie media.
 
 <img src="https://banners.beyondco.de/Laravel%20Cart.png?theme=light&packageManager=composer+require&packageName=binafy%2Flaravel-cart&pattern=autumn&style=style_1&description=customizable+package+for+adding+shopping+cart+functionality+to+Laravel+applications&md=1&showWatermark=0&fontSize=100px&images=https%3A%2F%2Flaravel.com%2Fimg%2Flogomark.min.svg" alt="binafy-laravel-cart" />
 
@@ -8,31 +8,31 @@
 [![License](https://img.shields.io/packagist/l/binafy/laravel-cart.svg)](https://packagist.org/packages/binafy/laravel-cart)
 [![Passed Tests](https://github.com/binafy/laravel-cart/actions/workflows/tests.yml/badge.svg)](https://github.com/binafy/laravel-cart/actions/workflows/tests.yml)
 
-- [Introduction](#introduction)
-- [Features](#features)
-- [Installation](#installation)
-- [Publish](#publish)
-- [Usage](#usage)
-    - [Configuration](#configuration)
-    - [Laravel Cart Facade](#laravel-cart-facade)
-      - [Driver](#driver)
-      - [Support Drivers](#support-drivers)
+- [Guest UI para binafy/laravel-cart con invitados, merge on login, badge Livewire/AJAX y vista con spatie media.](#guest-ui-para-binafylaravel-cart-con-invitados-merge-on-login-badge-livewireajax-y-vista-con-spatie-media)
+  - [Introduction](#introduction)
+  - [Features](#features)
+  - [Installation](#installation)
+  - [Instalación](#instalación)
+    - [Driver](#driver)
+    - [Support Drivers](#support-drivers)
     - [Laravel Cart Model](#laravel-cart-model)
-      - [Store Cart](#store-cart)
-      - [Access Itemable](#access-itemable)
-      - [Create Cart With Storing Items](#create-cart-with-storing-item)
-      - [Store multiple items](#store-multiple-items)
-      - [Store Item For a Cart](#store-item-for-a-cart)
-      - [Delete Item From Cart](#delete-item-from-cart)
-      - [Delete All Items From Cart](#delete-all-items-from-cart)
-      - [Increase Quantity](#increase-quantity)
-      - [Decrease Quantity](#decrease-quantity)
+    - [Store Cart](#store-cart)
+    - [Access Itemable](#access-itemable)
+    - [Create Cart With Storing Item](#create-cart-with-storing-item)
+    - [Store multiple items](#store-multiple-items)
+    - [Store Item For a Cart](#store-item-for-a-cart)
+    - [Delete Item From Cart](#delete-item-from-cart)
+    - [Delete All Items From Cart](#delete-all-items-from-cart)
+    - [Increase Quantity](#increase-quantity)
+    - [Decrease Quantity](#decrease-quantity)
     - [Available Events](#available-events)
-- [Contributors](#contributors)
-- [Security](#security)
-- [Changelog](#changelog)
-- [License](#license)
-- [Donate](#donate)
+  - [Contributors](#contributors)
+  - [Security](#security)
+  - [Changelog](#changelog)
+  - [License](#license)
+  - [Instalación](#instalación-1)
+  - [.env](#env)
+  - [Coloca el badge en la barra de navegación](#coloca-el-badge-en-la-barra-de-navegación)
 
 <a name="introduction"></a>
 ## Introduction
@@ -55,38 +55,66 @@ The `Laravel Cart` package is an ideal choice for developers looking to implemen
 
 <a name="installation"></a>
 ## Installation
-
-You can install the package with Composer:
+## Instalación
 
 ```bash
-composer require binafy/laravel-cart
-```
+composer require richardmaximun/laravel-cart-guest-ui
+Publica recursos y (opcional) migra en un paso:
 
-<a name="publish"></a>
-## Publish
+bash
+Copiar
+Editar
+php artisan cart-guest-ui:install --migrate
+El instalador:
 
-If you want to publish a config file, you can use this command:
+Publica config y migraciones de binafy/laravel-cart.
 
-```shell
-php artisan vendor:publish --tag="laravel-cart-config"
-```
+Publica config y vistas de este paquete.
 
-If you want to publish the migrations, you can use this command:
+Si pasas --migrate, corre php artisan migrate.
 
-```shell
-php artisan vendor:publish --tag="laravel-cart-migrations"
-```
+Variables .env (opcional)
+ini
+Copiar
+Editar
+CART_BADGE_MODE=livewire   # o 'ajax'
+CART_BADGE_POLL=10
+CART_MINI_CART=true
+CART_MINI_CART_LIMIT=5
+CART_MEDIA_CONVERSION=thumb
+CART_PLACEHOLDER=/images/placeholder.png
+Uso
+Coloca el badge en tu layout o navbar:
 
-For convenience, you can use this command to publish config, migration, and ... files:
+blade
+Copiar
+Editar
+<x-cart-guest-ui::cart.badge />
+La vista del carrito está en:
+GET /cart → cart-guest-ui::cart.index (puedes publicarla y personalizarla).
 
-```shell
-php artisan vendor:publish --provider="Binafy\LaravelCart\Providers\LaravelCartServiceProvider"
-```
+yaml
+Copiar
+Editar
 
-After publishing, run the `php artisan migrate` command.
+---
 
-<a name="usage"></a>
-## Usage
+## 4) (Opcional) Script de Composer
+
+Si quieres que el instalador corra **automático** al instalar el paquete en una app:
+
+**En tu `composer.json` del proyecto (NO del paquete)** agrega:
+
+```json
+{
+  "scripts": {
+    "post-autoload-dump": [
+      "@php artisan cart-guest-ui:install --no-interaction"
+    ]
+  }
+}
+
+Recomendación: mantenerlo manual en entornos CI/CD y usar --migrate solo cuando quieras aplicar migraciones automáticamente.
 
 <a name="configuration"></a>
 ### Configuration
@@ -349,11 +377,30 @@ The changelog can be found in the `CHANGELOG.md` file of the GitHub repository. 
 
 The MIT License (MIT). Please see [License File](https://github.com/binafy/laravel-cart/blob/1.x/LICENSE) for more information.
 
-<a name="donate"></a>
-## Donate
+UI sobre `binafy/laravel-cart` con:
+- Invitados (sesión) + Auth (DB)
+- Merge del carrito al iniciar sesión
+- Badge + mini-carrito (Livewire o AJAX por config)
+- Vista “Shopping Cart” con thumbnails usando spatie/medialibrary
 
-If this package is helpful for you, you can buy a coffee for me :) ❤️
+## Instalación
 
-- Iraninan Gateway: https://daramet.com/milwad_khosravi
-- Paypal Gateway: SOON
-- MetaMask Address: `0xf208a562c5a93DEf8450b656c3dbc1d0a53BDE58`
+```bash
+composer require richardmaximun/laravel-cart-guest-ui
+php artisan vendor:publish --tag=cart-guest-ui-config
+php artisan vendor:publish --tag=cart-guest-ui-views
+
+## .env
+
+```ini
+CART_BADGE_MODE=livewire # o 'ajax'
+CART_BADGE_POLL=10
+CART_MINI_CART=true
+CART_MINI_CART_LIMIT=5
+CART_MEDIA_CONVERSION=thumb
+CART_PLACEHOLDER=/images/placeholder.png
+
+## Coloca el badge en la barra de navegación
+
+```html
+<x-cart-guest-ui::cart.badge />

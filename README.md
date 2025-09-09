@@ -12,6 +12,9 @@
   - [Introduction](#introduction)
   - [Features](#features)
   - [Installation](#installation)
+  - [4) (Opcional) Script de Composer](#4-opcional-script-de-composer)
+    - [Configuration](#configuration)
+    - [Laravel Cart Facade](#laravel-cart-facade)
     - [Driver](#driver)
     - [Support Drivers](#support-drivers)
     - [Laravel Cart Model](#laravel-cart-model)
@@ -59,6 +62,7 @@ Publica recursos y (opcional) migra en un paso:
 
 ```bash
 php artisan cart-guest-ui:install --migrate
+```
 
 El instalador:
 
@@ -77,18 +81,18 @@ CART_MINI_CART=true
 CART_MINI_CART_LIMIT=5
 CART_MEDIA_CONVERSION=thumb
 CART_PLACEHOLDER=/images/placeholder.png
+```
 
 Uso
 Coloca el badge en tu layout o navbar:
 
 ```blade
 <x-cart-guest-ui::cart.badge />
+```
+
 La vista del carrito está en:
 GET /cart → cart-guest-ui::cart.index (puedes publicarla y personalizarla).
 
-```yaml
-
----
 
 ## 4) (Opcional) Script de Composer
 
@@ -104,6 +108,7 @@ Si quieres que el instalador corra **automático** al instalar el paquete en una
     ]
   }
 }
+```
 
 Recomendación: mantenerlo manual en entornos CI/CD y usar --migrate solo cuando quieras aplicar migraciones automáticamente.
 

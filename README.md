@@ -12,7 +12,6 @@
   - [Introduction](#introduction)
   - [Features](#features)
   - [Installation](#installation)
-  - [Instalación](#instalación)
     - [Driver](#driver)
     - [Support Drivers](#support-drivers)
     - [Laravel Cart Model](#laravel-cart-model)
@@ -52,14 +51,15 @@ The `Laravel Cart` package is an ideal choice for developers looking to implemen
 
 <a name="installation"></a>
 ## Installation
-## Instalación
 
 ```bash
 composer require richardmaximun/laravel-cart-guest-ui
+
 Publica recursos y (opcional) migra en un paso:
 
 ```bash
 php artisan cart-guest-ui:install --migrate
+
 El instalador:
 
 Publica config y migraciones de binafy/laravel-cart.

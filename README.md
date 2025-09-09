@@ -30,9 +30,6 @@
   - [Security](#security)
   - [Changelog](#changelog)
   - [License](#license)
-  - [Instalación](#instalación-1)
-  - [.env](#env)
-  - [Coloca el badge en la barra de navegación](#coloca-el-badge-en-la-barra-de-navegación)
 
 <a name="introduction"></a>
 ## Introduction
@@ -61,9 +58,7 @@ The `Laravel Cart` package is an ideal choice for developers looking to implemen
 composer require richardmaximun/laravel-cart-guest-ui
 Publica recursos y (opcional) migra en un paso:
 
-bash
-Copiar
-Editar
+```bash
 php artisan cart-guest-ui:install --migrate
 El instalador:
 
@@ -74,28 +69,24 @@ Publica config y vistas de este paquete.
 Si pasas --migrate, corre php artisan migrate.
 
 Variables .env (opcional)
-ini
-Copiar
-Editar
+```ini
+
 CART_BADGE_MODE=livewire   # o 'ajax'
 CART_BADGE_POLL=10
 CART_MINI_CART=true
 CART_MINI_CART_LIMIT=5
 CART_MEDIA_CONVERSION=thumb
 CART_PLACEHOLDER=/images/placeholder.png
+
 Uso
 Coloca el badge en tu layout o navbar:
 
-blade
-Copiar
-Editar
+```blade
 <x-cart-guest-ui::cart.badge />
 La vista del carrito está en:
 GET /cart → cart-guest-ui::cart.index (puedes publicarla y personalizarla).
 
-yaml
-Copiar
-Editar
+```yaml
 
 ---
 
@@ -377,30 +368,3 @@ The changelog can be found in the `CHANGELOG.md` file of the GitHub repository. 
 
 The MIT License (MIT). Please see [License File](https://github.com/binafy/laravel-cart/blob/1.x/LICENSE) for more information.
 
-UI sobre `binafy/laravel-cart` con:
-- Invitados (sesión) + Auth (DB)
-- Merge del carrito al iniciar sesión
-- Badge + mini-carrito (Livewire o AJAX por config)
-- Vista “Shopping Cart” con thumbnails usando spatie/medialibrary
-
-## Instalación
-
-```bash
-composer require richardmaximun/laravel-cart-guest-ui
-php artisan vendor:publish --tag=cart-guest-ui-config
-php artisan vendor:publish --tag=cart-guest-ui-views
-
-## .env
-
-```ini
-CART_BADGE_MODE=livewire # o 'ajax'
-CART_BADGE_POLL=10
-CART_MINI_CART=true
-CART_MINI_CART_LIMIT=5
-CART_MEDIA_CONVERSION=thumb
-CART_PLACEHOLDER=/images/placeholder.png
-
-## Coloca el badge en la barra de navegación
-
-```html
-<x-cart-guest-ui::cart.badge />
